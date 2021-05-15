@@ -8,13 +8,15 @@ El ejercicio actual consiste en la predicción de los mecanismos de las células
 
 ## Descripción de los datos
 
-sig_id : Nombre de los fármacos
-cp_type : tipo de control durante el proceso de experimentación
-cp_time : tiempo de dosis (24, 48, 72)
-cp_dose : tipo de dosis (D1: baja, D2: alta)
-g = Estos son los datos de expresiones génicas correspientes a las respuestas al uso de proteínas (872 variables "g")
-c = Viabilidad celular correspondiente a los ensayos de laboratorio (100 variables "c")
-nfkb_inhibitor: Proteína usada como variable de salida la cual contiene un resultado binario. 1 para activación y 0 para no activación.
+El dataset es bastante pesado, por ende, no se carga en el repositorio. Se puede descargar desde el siguente [link](https://www.kaggle.com/c/lish-moa/data)
+
+- sig_id : Nombre de los fármacos
+- cp_type : tipo de control durante el proceso de experimentación
+- cp_time : tiempo de dosis (24, 48, 72)
+- cp_dose : tipo de dosis (D1: baja, D2: alta)
+- g = Estos son los datos de expresiones génicas correspientes a las respuestas al uso de proteínas (872 variables "g")
+- c = Viabilidad celular correspondiente a los ensayos de laboratorio (100 variables "c")
+- nfkb_inhibitor: Proteína usada como variable de salida la cual contiene un resultado binario. 1 para activación y 0 para no activación
 
 Es importante mencionar que muchas proteínas son activadas. Sin embargo para este despliegue se usa una sola proteína.
 
