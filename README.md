@@ -2,30 +2,21 @@
 
 Presentado por: Edward Nicolas Montoya Arcila - Yeison Villamil
 
-Ejemplo de despliegue de modelo de machine learning. El objetivo de este proyecto es desplegar un servicio web en la nube pública de azure mediante AzureML. Este servicio es capaz de predecir si una persona es propensa a sufrir un ataque al corazón basados en variables de salud globales. Los datos fueron tomados de Kaggle en el siguiente link: https://www.kaggle.com/rashikrahmanpritom/heart-attack-analysis-prediction-dataset.
+### MoA (mechanism of action) PREDICTION
+
+El ejercicio actual consiste en la predicción de los mecanismos de las células, llamada a MoA. A la hora de probar la efectividad de un fármaco, en platos de ensayos son puestas células con RNA único, al ser estimuladas con un fámarco, esta tiene una respuesta que se le llama mecanismo de acción, este funciona activando una proteína. Si el fármaco activa una proteína, quiere decir que este puede ser efectivo para una patología que tengan relacionada esta proteína. El objetivo de este proyecto es desplegar un servicio web en la nube pública de azure mediante AzureML. Este servicio es capaz de predecir si la proteína que se está prediciendo reacciona de forma positiva con un valor de 1 al activarse usando un fármaco o no activarse. https://www.kaggle.com/c/lish-moa
 
 ## Descripción de los datos
 
-- Age : Edad del paciente
-- Sex : Sexo del paciente
-- exang: Ejercicio inducido de angina
-- ca: Número de vasos sanguineos
-- cp : Tipo de dolor en el pecho
-  - Value 1: Angina tipica
-  - Value 2: Angina atipica
-  - Value 3: Sin dolor
-  - Value 4: Asintomatico
-- trtbps : presión arterial en reposo  (in mm Hg)
-- chol : colestoral en mg / dl obtenido a través del sensor de IMC
-- fbs : (glucemia en ayunas > 120 mg/dl) (1 = Si; 0 = No)
-- rest_ecg : resultados electrocardiográficos en reposo
-  - Value 0: normal
-  - Value 1: Tiene una anomalía de la onda ST-T (inversiones de la onda T y / o elevación o depresión del ST de> 0,05 mV)
-  - Value 2: Muestra hipertrofia ventricular izquierda probable o definitiva
-- thalach : frecuencia cardíaca máxima alcanzada
-- target : 0= Baja posibilidad de ataque al corazón 1= Alta posibilidad de ataque al corazón.
+sig_id : Nombre de los fármacos
+cp_type : tipo de control durante el proceso de experimentación
+cp_time : tiempo de dosis (24, 48, 72)
+cp_dose : tipo de dosis (D1: baja, D2: alta)
+g = Estos son los datos de expresiones génicas correspientes a las respuestas al uso de proteínas (872 variables "g")
+c = Viabilidad celular correspondiente a los ensayos de laboratorio (100 variables "c")
+nfkb_inhibitor: Proteína usada como variable de salida la cual contiene un resultado binario. 1 para activación y 0 para no activación.
 
-
+Es importante mencionar que muchas proteínas son activadas. Sin embargo para este despliegue se usa una sola proteína.
 
 ## Requerimientos
 
@@ -46,6 +37,7 @@ pip install azureml-contrib-services
 pip install numpy
 pip install pandas
 pip install scikit-learn
+pip install scikit-multilearn
 ```
 
 - Ejecutar el primer script de creación del ambiente 

@@ -23,7 +23,7 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         '--class_weight',
-        type=int,
+        type=str,
         default='balanced',
         help='data balanceada'
     )

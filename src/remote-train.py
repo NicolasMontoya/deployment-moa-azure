@@ -23,7 +23,7 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         '--class_weight',
-        type=int,
+        type=str,
         default='balanced',
         help='data balanceada'
     )
@@ -37,7 +37,7 @@ if __name__ == "__main__":
     data = input_ds.to_pandas_dataframe()
 
     dataframe = validate_data(data)
-    X_train, X_test, y_train, y_test = split_data(dataframe)
+    X_train, y_train, X_test, y_test = split_data(dataframe)
     model = train_model(X_train, y_train, save=True, criterion=args.criterion,random_state=args.random_state, class_weight= args.class_weight)
     y_pred = model.predict(X_test)
     y_prob = model.predict_proba(X_test)

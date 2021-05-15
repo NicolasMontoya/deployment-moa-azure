@@ -25,7 +25,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
     deployment_config = AciWebservice.deploy_configuration(cpu_cores=0.1, 
                                                   memory_gb=0.5, 
-                                                  tags={"data": "Hearth",  "method" : "sklearn"}, 
+                                                  tags={"method" : "sklearn"}, 
                                                   description='Predict MoA activation with sklearn')
 
     # Despliegue local mediante docker
@@ -37,14 +37,14 @@ if __name__ == "__main__":
     print(model.name, model.id, model.version, sep='\t')
 
     # Creciación de azure constainer con ambiente gestionado mediante conda.
-    myenv = Environment(name="myenv")
+    myenv = Environment(name="envmoa")
     # Se habilita docker
     myenv.docker.enabled = True
     # Definición de dependencias de docker.
     myenv.python.conda_dependencies = CondaDependencies.create(conda_packages=['scikit-learn'],
-                                                              pip_packages=['azureml-defaults', 'numpy', 'pandas'])
+                                                              pip_packages=['azureml-defaults', 'numpy', 'pandas', 'scikit-multilearn'])
                                                               
     inf_config = InferenceConfig(environment=myenv, source_directory='./src', entry_script='entry.py')
-    service = Model.deploy(ws, "MoA-webservice", [model], inf_config, deployment_config)
+    service = Model.deploy(ws, "moa-webservice-v7", [model], inf_config, deployment_config)
     service.wait_for_deployment(show_output=True)
     print(service.get_logs())
